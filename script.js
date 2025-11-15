@@ -1,4 +1,3 @@
-
 const apikey = process.env.OPENAI_API_KEY;
 
 async function IA(texto) {
