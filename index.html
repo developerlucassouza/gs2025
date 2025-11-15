@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Solution</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        div.col-md-2,
+        div.col-md-7 {
+            overflow-y: auto;
+        }
+
+        button {
+            margin-bottom: 10px;
+            width: 90% !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Global Solution</h1>
+    </header>
+
+    <div class="row">
+        <div class="col-md-2 bg-black">
+            <a href="admin.html" class="btn btn-primary">Ir para Admin</a>
+            <h3>Instruções</h3>
+            <script>
+                for (let i = 0; i < localStorage.length; i++) {
+                    const chave = localStorage.key(i);
+                    const valor = localStorage.getItem(chave);
+
+                    document.write(`<button onclick="carregar('${chave}')" class="btn btn-secondary">${chave}</button>`);
+                }
+            </script>
+        </div>
+        <div class="col-md-7 bg-dark">
+            <h2>Instruções</h2>
+            <pre id="instrucoes">As instruções serão carregadas aqui</pre>
+            <button onclick="excluir()" id="excluir" name="" class="btn btn-danger">Excluir</button>
+        </div>
+        <div class="col-md-3 bg-dark">
+
+        </div>
+    </div>
+
+    <!-- Bootstrap/jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+        integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function carregar(chave) {
+            let instrucoes = localStorage.getItem(chave);
+
+            if (!instrucoes) {
+                instrucoes = "Nenhuma instrução encontrada para essa chave.";
+            }
+
+            document.querySelector('h2').innerHTML = chave;
+            document.querySelector('#instrucoes').innerHTML = instrucoes;
+            document.querySelector('#excluir').name = chave;
+        }
+
+        function excluir() {
+            let chave = document.querySelector('#excluir').name;
+            localStorage.removeItem(chave);
+            location.reload();
+        }
+
+    </script>
+</body>
+
+</html>

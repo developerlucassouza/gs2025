@@ -1,0 +1,88 @@
+:root {
+    --color-primary: #0071e1;
+    --color-text: #ffffffff;
+    --color-text-secondary: #6c757d;
+    --color-background: #1b1c1d;
+    --color-surface: #282a2c;
+}
+
+.bg-black {
+    background-color: var(--color-background);
+}
+
+.bg-dark {
+    background-color: var(--color-surface);
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        overflow: hidden;
+    }
+}
+
+header {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    height: 10vh;
+}
+
+header h1 {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+div.row div {
+    height: 90vh;
+}
+
+div.col-md-2 {
+    color: var(--color-text-secondary);
+    padding-left: 30px;
+}
+
+@media screen and (orientation: portrait) {
+    div.col-md-2 {
+        height: auto !important;
+    }
+
+    div.col-md-7,
+    div.col-md-3 {
+        padding-left: 30px;
+    }
+}
+
+h2 {
+    margin: 20px auto;
+    color: var(--color-text);
+}
+
+a {
+    display: block;
+    margin: 10px auto;
+    width: 90%;
+}
+
+
+
+
+
+textarea {
+    background-color: var(--color-surface) !important;
+    color: var(--color-text) !important;
+}
+
+div.form-floating label {
+    color: var(--color-text);
+}
+
+
+
+
+
+pre#instrucoes {
+    color: var(--color-text);
+
+     white-space: pre-wrap; /* mantém espaços e quebras originais, mas quebra linhas automaticamente */
+    word-wrap: break-word; /* quebra palavras muito longas */
+    overflow-wrap: break-word; /* suporte para navegadores modernos */
+}

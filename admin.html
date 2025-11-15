@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Solution</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        div.form-floating {
+            display: block !important;
+            margin: auto !important;
+            margin-top: 10px !important;
+            height: 90vh !important;
+        }
+
+        textarea, input {
+            resize: none !important;   
+            width: calc(100% - 20px) !important;
+        }
+
+        #enviar, #salvar {
+            margin-top: 10px;
+            width: calc(100% - 20px);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Global Solution</h1>
+    </header>
+
+    <div class="row">
+        <div class="col-md-2 bg-black">
+            <a href="index.html" class="btn btn-primary">Ir para Home</a>
+        </div>
+
+        <div class="col-md-7 bg-dark">
+            <h2>Gerar Nova Instrução</h2>
+
+            <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Título">
+
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 65%"></textarea>
+                <label for="floatingTextarea">Aqui será carregado o texto gerado pela IA para edição</label>
+
+                <button id="salvar" class="btn btn-secondary">Salvar</button>
+            </div>
+        </div>
+
+        <div class="col-md-3 bg-black">
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                style="height: 85%"></textarea>
+                <label for="floatingTextarea">Digite aqui as instruções para a IA</label>
+
+                <button id="enviar" class="btn btn-secondary">Enviar</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Bootstrap/jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+        integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+        crossorigin="anonymous"></script>
+
+    <script src="script.js"></script>
+
+    <script>
+        document.querySelector('#enviar').addEventListener('click', carregar);
+        async function carregar() {
+            let text = document.querySelector('#floatingTextarea').value;
+            let resposta = await IA(text);
+            document.querySelector('#floatingTextarea2').value = resposta;
+        }
+
+        document.querySelector('#salvar').addEventListener('click', salvar);
+        async function salvar() {
+            let titulo = document.querySelector('#titulo').value;
+            let text = document.querySelector('#floatingTextarea2').value;
+
+            localStorage.setItem(titulo, text);
+            
+            document.querySelector('#titulo').value = '';
+            document.querySelector('#floatingTextarea').value = '';
+            document.querySelector('#floatingTextarea2').value = '';
+            alert('Instrução Salva com Sucesso!');
+        }
+    </script>
+</body>
+
+</html>
