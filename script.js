@@ -1,5 +1,5 @@
 
-const apikey = "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"
+const apikey = process.env.OPENAI_API_KEY;
 
 async function IA(texto) {
     const url = "https://api.openai.com/v1/responses";
